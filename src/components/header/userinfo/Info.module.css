@@ -1,0 +1,27 @@
+.info {
+  display:block;
+  color: #554a53;
+  margin: 0.25rem;
+}
+
+.userName {
+  font-size: 0.75rem;
+  text-align: left;
+  margin: 0.20rem 0 0 1rem;
+  color: #554a53;
+  float: left;
+}
+
+.level {
+  display: block;
+  float: right;
+  margin: 0.20rem 0.20rem 0 0;
+}
+
+.level p {
+  font-size: 0.75rem;
+  text-align: left;
+  margin: 0 0.20rem 0.20rem 0.20rem;
+  color: #554a53;
+  float: left;
+}

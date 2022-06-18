@@ -1,0 +1,9 @@
+.userInfo {
+  border-radius: 4px;
+  display: block;
+  width: 30%;
+  /* background-color:azure; */
+  color: #4a5555;
+  margin: 1%;
+  float: right;
+}

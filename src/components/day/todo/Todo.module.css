@@ -1,0 +1,18 @@
+.todo {
+  float: left;
+  width: 90%;
+  margin: 1rem;
+  background-color:brown;
+  display: flex;
+}
+
+.ready {
+  text-align: right;
+  margin: 0.5rem;
+  /* background-color:aquamarine; */
+}
+
+.ready button {
+  margin: 0.2rem;
+  font-size: 1.25rem;
+}
