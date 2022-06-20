@@ -1,15 +1,17 @@
 .heavity {
-  width: 10%;
+  width: 15%;
   margin: 0.5rem;
   margin-right: 1rem;
   text-align: center;
   background-color:violet;
 }
 
-.heavity p{
+.heavity button{
   color: #554a53;
   text-align: center;
   font-size: 1rem;
   margin: 0.2rem;
-  padding: 0.2rem;
+  padding: 0.5rem;
+  border: 0px solid teal;
+  background-color: transparent;
 }

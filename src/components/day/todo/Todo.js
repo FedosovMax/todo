@@ -1,21 +1,23 @@
 import { Fragment, useState} from 'react';
 
 import classes from "./Todo.module.css";
-import TodoInput from "./TodoInput";
 import Heavity from "./Heavity";
 import Scarity from "./Scarity";
 
-const Todo = () => {
+const Todo = (props) => {
   const [isReady, setIsReady] = useState(false);
 
   const makeReadyHandler = () => {
+    console.log("Task is ready");
     setIsReady(true);
   };
 
   return (
     <Fragment>
       <div className={classes.todo}>
-        <TodoInput />
+        <div className={classes.todoName}>
+          <p>Buy a toothpaste</p>
+        </div>
         <Heavity />
         <Scarity />
         <div className={classes.ready}>
