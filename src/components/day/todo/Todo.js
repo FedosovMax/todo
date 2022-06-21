@@ -16,9 +16,9 @@ const Todo = (props) => {
     <Fragment>
       <div className={classes.todo}>
         <div className={classes.todoName}>
-          <p>Buy a toothpaste</p>
+          <p>{props.text}</p>
         </div>
-        <Heavity />
+        <Heavity heavity={props.heavity}/>
         <Scarity />
         <div className={classes.ready}>
           <button onClick={makeReadyHandler} className="btn">

@@ -1,6 +1,6 @@
 .todo {
   float: left;
-  width: 90%;
+  width: 95%;
   margin: 1rem;
   /* background-color:brown; */
   display: flex;
@@ -21,6 +21,7 @@
   width: 65%;
   margin: 0.5rem;
   border: 1px solid teal;
+  border-radius: 4px;
   /* background-color:yellow; */
   margin-right: 1rem;
 }
@@ -33,7 +34,24 @@
   /* background-color:chocolate; */
 }
 
-.heavity {
+.ready button {
+  color: #554a53;
+  text-align: center;
+  font-size: 1rem;
+  margin: 0.2rem;
+  padding: 0.5rem;
+  border: 1px solid teal;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.ready button:hover {
+  border: 1px solid brown;
+  background-color: cadetblue;
+}
+
+/* .heavity {
   width: 10%;
   margin: 0.5rem;
   margin-right: 1rem;
@@ -47,4 +65,4 @@
   font-size: 1rem;
   margin: 0.2rem;
   padding: 0.2rem;
-}
+} */

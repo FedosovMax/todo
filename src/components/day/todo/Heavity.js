@@ -4,8 +4,8 @@ import classes from './Heavity.module.css'
 
 let HEAVITY_LIST = ['easy', 'medium', 'hard', 'impossible']
 
-const Heavity = () => {
-  const [heavityState, setHeavityState] = useState(HEAVITY_LIST[0])
+const Heavity = (props) => {
+  const [heavityState, setHeavityState] = useState(props.heavity)
 
   const chooseHeavityStateHandler = () => {
     console.log(heavityState)

@@ -1,23 +1,21 @@
-import classes from "./AddTodo.module.css";
+import { Fragment, useRef, useState } from "react";
 
-const AddTodo = () => {
+import classes from "./AddTodo.module.css";
+import Heavity from "../todo/Heavity";
+import Scarity from "../todo/Scarity";
+
+const AddTodo = (props) => {
   const [isEntering, setIsEntering] = useState(false);
 
-  const authorInputRef = useRef();
   const textInputRef = useRef();
 
   function submitFormHandler(event) {
     event.preventDefault();
 
-    const enteredAuthor = authorInputRef.current.value;
     const enteredText = textInputRef.current.value;
-
-    // optional: Could validate here
-
-    props.onAddQuote({ author: enteredAuthor, text: enteredText });
   }
 
-  const finishEnteringHandler = () => {
+  const addTodoHandler = () => {
     setIsEntering(false);
   };
 
@@ -27,37 +25,24 @@ const AddTodo = () => {
 
   return (
     <Fragment>
-      <Prompt
-        when={isEntering}
-        message={(location) =>
-          'Are you sure you want to leave? All your entered data will be lost!'
-        }
-      />
-      <Card>
+      <div className={classes.addtodo}>
         <form
           onFocus={formFocusedHandler}
           className={classes.form}
           onSubmit={submitFormHandler}
         >
-          {props.isLoading && (
-            <div className={classes.loading}>
-              <LoadingSpinner />
-            </div>
-          )}
-
           <div className={classes.control}>
-            <label htmlFor='author'>Author</label>
-            <input type='text' id='author' ref={authorInputRef} />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor='text'>Text</label>
-            <textarea id='text' rows='5' ref={textInputRef}></textarea>
-          </div>
-          <div className={classes.actions}>
-            <button onClick={finishEnteringHandler} className='btn'>Add Quote</button>
+            <textarea id="text" rows={1} ref={textInputRef}></textarea>
           </div>
         </form>
-      </Card>
+        <Heavity />
+        <Scarity />
+        <div className={classes.actions}>
+            <button onClick={addTodoHandler} className="btn">
+              Add
+            </button>
+          </div>
+      </div>
     </Fragment>
   );
 };
