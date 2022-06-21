@@ -1,7 +1,7 @@
 import { Fragment, useRef, useState } from "react";
 
 import classes from "./AddTodo.module.css";
-import Heavity from "../todo/Heavity";
+import Heavity from "../todo/Hardness";
 import Scarity from "../todo/Scarity";
 
 const AddTodo = (props) => {
@@ -35,7 +35,7 @@ const AddTodo = (props) => {
             <textarea id="text" rows={1} ref={textInputRef}></textarea>
           </div>
         </form>
-        <Heavity />
+        <Heavity hardness={props.hardness}/>
         <Scarity />
         <div className={classes.actions}>
             <button onClick={addTodoHandler} className="btn">

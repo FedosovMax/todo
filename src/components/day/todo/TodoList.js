@@ -11,9 +11,9 @@ const TodoList = (props) => {
           <Todo
             id={todo.id}
             text={todo.text}
-            heavity={todo.heavity}
+            hardness={todo.hardness}
             scarity={todo.scarity}
-            ready={todo.isReady}
+            isReady={todo.isReady}
           />
         ))}
       </ul>

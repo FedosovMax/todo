@@ -1,11 +1,11 @@
 import { Fragment, useState} from 'react';
 
 import classes from "./Todo.module.css";
-import Heavity from "./Heavity";
+import Hardness from "./Hardness";
 import Scarity from "./Scarity";
 
 const Todo = (props) => {
-  const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(props.isReady);
 
   const makeReadyHandler = () => {
     console.log("Task is ready");
@@ -18,7 +18,7 @@ const Todo = (props) => {
         <div className={classes.todoName}>
           <p>{props.text}</p>
         </div>
-        <Heavity heavity={props.heavity}/>
+        <Hardness hardness={props.hardness}/>
         <Scarity />
         <div className={classes.ready}>
           <button onClick={makeReadyHandler} className="btn">

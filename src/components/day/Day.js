@@ -14,7 +14,7 @@ const DUMMY_TODO = [
     id: "2",
     text: "Buy something",
     hardness: "hard",
-    difficulty: "scary",
+    scarity: "scary",
     isReady: false,
   },
 ];
