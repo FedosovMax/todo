@@ -19,7 +19,7 @@ const Todo = (props) => {
           <p>{props.text}</p>
         </div>
         <Hardness hardness={props.hardness}/>
-        <Scarity />
+        <Scarity scarity={props.scarity}/>
         <div className={classes.ready}>
           <button onClick={makeReadyHandler} className="btn">
             DONE

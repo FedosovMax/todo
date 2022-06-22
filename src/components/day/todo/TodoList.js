@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 
 import classes from "./Todo.module.css";
 import Todo from "./Todo";

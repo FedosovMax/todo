@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import classes from "./Day.module.css";
 import TodoList from "./todo/TodoList";
 import AddTodo from "./addtodo/AddTodo";
@@ -7,7 +8,7 @@ const DUMMY_TODO = [
     id: "1",
     text: "Do something",
     hardness: "easy",
-    difficulty: "scary",
+    scarity: "scary",
     ready: false,
   },
   {
@@ -20,10 +21,28 @@ const DUMMY_TODO = [
 ];
 
 const Day = () => {
+  const [todoList, setTodoList] = useState([DUMMY_TODO]);
+
+  const onAddTodoHandler = (props) => {
+    console.log("onAddTodoHandler")
+    setTodoList((prevTodoList) => {
+      return [
+        ...prevTodoList,
+        {
+          text: props.text,
+          hardness: props.hardness,
+          scarity: props.scarity,
+          isReady: false,
+          id: Math.random().toString(),
+        },
+      ];
+    });
+  };
+
   return (
     <div className={classes.day}>
-      <AddTodo />
-      <TodoList todos={DUMMY_TODO} />
+      <AddTodo onAddTodo={onAddTodoHandler} />
+      <TodoList todos={todoList} />
     </div>
   );
 };

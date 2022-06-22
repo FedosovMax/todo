@@ -1,11 +1,12 @@
+import React from 'react';
 import { useState } from 'react'
 
-import classes from './Scarity.module.css'
+import classes from './AddScarity.module.css'
 
 let SCARITY_LIST = ['not scary', 'little scary', 'scary', 'terrifying']
 
-const Scarity = (props) => {
-  const [scarityState, setScarityState] = useState(props.scarity)
+const AddScarity = React.forwardRef((props, ref) => {
+  const [scarityState, setScarityState] = useState(SCARITY_LIST[0])
 
   const chooseScarityStateHandler = () => {
     console.log(scarityState)
@@ -29,11 +30,11 @@ const Scarity = (props) => {
 
   return (
     <div className={classes.scarity}>
-      <button onClick={chooseScarityStateHandler} className="btn">
+      <button onClick={chooseScarityStateHandler} ref={ref} className="btn">
         {scarityState}
       </button>
     </div>
   )
-}
+});
 
-export default Scarity
+export default AddScarity
