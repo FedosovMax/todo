@@ -5,15 +5,19 @@ import classes from './AddHardness.module.css'
 
 let HARDNESS_LIST = ['easy', 'medium', 'hard', 'impossible']
 
-const AddHardness = React.forwardRef((props, ref) => {
-  const [heavityState, setHeavityState] = useState(HARDNESS_LIST[0])
+const AddHardness = (props) => {
+  const [heavityState, setHeavityState] = useState(props.init)
+
+  // const findActualIndex = (actual) => {
+  //   return HARDNESS_LIST.findIndex(actual);
+  // }
 
   const chooseHeavityStateHandler = () => {
-    console.log(heavityState)
     if (heavityState === 'easy') {
+      console.log(heavityState);
       setHeavityState(HARDNESS_LIST[1])
       props.onAddHardness(heavityState);
-      return heavityState 
+      return heavityState;
     }
     if (heavityState === 'medium') {
       setHeavityState(HARDNESS_LIST[2])
@@ -26,7 +30,7 @@ const AddHardness = React.forwardRef((props, ref) => {
       return heavityState
     }
     if (heavityState === 'impossible') {
-      setHeavityState(HARDNESS_LIST[0])
+      setHeavityState(HARDNESS_LIST[4])
       props.onAddHardness(heavityState);
       return heavityState
     }
@@ -34,11 +38,11 @@ const AddHardness = React.forwardRef((props, ref) => {
 
   return (
     <div className={classes.heavity}>
-      <button onClick={chooseHeavityStateHandler} ref={ref} className="btn">
+      <button onClick={chooseHeavityStateHandler} className="btn">
         {heavityState}
       </button>
     </div>
   )
-});
+}
 
 export default AddHardness;

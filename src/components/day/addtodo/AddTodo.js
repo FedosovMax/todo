@@ -5,20 +5,21 @@ import AddHardness from "./AddHardness";
 import AddScarity from "./AddScarity";
 
 const AddTodo = (props) => {
-  const [isEntering, setIsEntering] = useState(false);
+//   const [isEntering, setIsEntering] = useState(false);
   const textInputRef = useRef();
-  const hardnessInputRef = useRef();
-  const scarityInputRef = useRef();
+  //   const hardnessInputRef = useRef();
+  //   const scarityInputRef = useRef();
 
   function submitFormHandler(event) {
     event.preventDefault();
   }
 
+  var enteredHardness = 'easy';
+  var enteredScarity = 'not scary';
+
   const addTodoHandler = () => {
-    setIsEntering(false);
+    // setIsEntering(false);
     const enteredText = textInputRef.current.value;
-    const enteredHardness = hardnessInputRef.current.value;
-    const enteredScarity = scarityInputRef.current.value;
 
     console.log(enteredHardness);
 
@@ -30,12 +31,13 @@ const AddTodo = (props) => {
     });
   };
 
-  const formFocusedHandler = () => {
-    setIsEntering(true);
-  };
+//   const formFocusedHandler = () => {
+//     setIsEntering(true);
+//   };
 
   const addHardnessHandler = (hardnessData) => {
-    console.log("handle Hardness");
+    // console.log(hardnessData);
+    enteredHardness = hardnessData;
   };
 
   const addScarityHandler = (scarityData) => {
@@ -46,7 +48,7 @@ const AddTodo = (props) => {
     <Fragment>
       <div className={classes.addtodo}>
         <form
-          onFocus={formFocusedHandler}
+        //   onFocus={formFocusedHandler}
           className={classes.form}
           onSubmit={submitFormHandler}
         >
@@ -56,9 +58,13 @@ const AddTodo = (props) => {
         </form>
         <AddHardness
           onAddHardness={addHardnessHandler}
-          ref={hardnessInputRef}
+          init={enteredHardness}
+        //   init={{hardness: enteredHardness}}
         />
-        <AddScarity onAddScarity={addScarityHandler} ref={scarityInputRef} />
+        <AddScarity
+          onAddScarity={addScarityHandler}
+          //   ref={scarityInputRef}
+        />
         <div className={classes.actions}>
           <button type="submit" onClick={addTodoHandler} className="btn">
             Add
