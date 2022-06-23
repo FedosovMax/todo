@@ -8,7 +8,6 @@ const Todo = (props) => {
   const [isReady, setIsReady] = useState(props.isReady);
 
   const makeReadyHandler = () => {
-    console.log("Task is ready");
     setIsReady(true);
   };
 

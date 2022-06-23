@@ -21,7 +21,7 @@ const DUMMY_TODO = [
 ];
 
 const Day = () => {
-  const [todoList, setTodoList] = useState([DUMMY_TODO]);
+  const [todoList, setTodoList] = useState([]);
 
   const onAddTodoHandler = (props) => {
     // console.log("onAddTodoHandler")

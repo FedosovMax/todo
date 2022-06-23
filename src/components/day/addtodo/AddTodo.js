@@ -21,8 +21,6 @@ const AddTodo = (props) => {
     // setIsEntering(false);
     const enteredText = textInputRef.current.value;
 
-    console.log(enteredHardness);
-
     props.onAddTodo({
       text: enteredText,
       hardness: enteredHardness,
@@ -41,7 +39,8 @@ const AddTodo = (props) => {
   };
 
   const addScarityHandler = (scarityData) => {
-    console.log("handle Scarity");
+    // console.log("handle Scarity");
+    enteredScarity = scarityData;
   };
 
   return (
@@ -59,11 +58,10 @@ const AddTodo = (props) => {
         <AddHardness
           onAddHardness={addHardnessHandler}
           init={enteredHardness}
-        //   init={{hardness: enteredHardness}}
         />
         <AddScarity
           onAddScarity={addScarityHandler}
-          //   ref={scarityInputRef}
+          init={enteredScarity}
         />
         <div className={classes.actions}>
           <button type="submit" onClick={addTodoHandler} className="btn">
