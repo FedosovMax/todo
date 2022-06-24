@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import classes from "./Day.module.css";
 import TodoList from "./todo/TodoList";
 import AddTodo from "./addtodo/AddTodo";
@@ -22,6 +22,43 @@ const DUMMY_TODO = [
 
 const Day = () => {
   const [todoList, setTodoList] = useState([]);
+  const [error, setError] = useState(null);
+
+  // async function fetchMoviesHandler() {
+  const fetchMoviesHandler = useCallback(async () => {
+    // setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(
+        "https://todo-6d56a-default-rtdb.europe-west1.firebasedatabase.app/todos.json"
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const data = await response.json();
+
+      setTodoList(data);
+
+      // const loadedTodos = [];
+
+      // for (const key in data) {
+      //   loadedMovies.push({
+      //     id: key,
+      //     title: data[key].title,
+      //     openingText: data[key].openingText,
+      //     releaseDate: data[key].releaseDate, 
+      //   });
+      // }
+    } catch (error) {
+      setError(error.message);
+    }
+    // setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
 
   const onAddTodoHandler = (props) => {
     // console.log("onAddTodoHandler")
@@ -37,7 +74,6 @@ const Day = () => {
         },
       ];
     });
-  };
 
   return (
     <div className={classes.day}>
