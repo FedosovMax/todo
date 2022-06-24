@@ -47,7 +47,7 @@ const Day = () => {
       //     id: key,
       //     title: data[key].title,
       //     openingText: data[key].openingText,
-      //     releaseDate: data[key].releaseDate, 
+      //     releaseDate: data[key].releaseDate,
       //   });
       // }
     } catch (error) {
@@ -75,12 +75,12 @@ const Day = () => {
       ];
     });
 
-  return (
-    <div className={classes.day}>
-      <AddTodo onAddTodo={onAddTodoHandler} />
-      <TodoList todos={todoList} />
-    </div>
-  );
+    return (
+      <div className={classes.day}>
+        <AddTodo onAddTodo={onAddTodoHandler} />
+        <TodoList todos={todoList} />
+      </div>
+    );
+  };
 };
-
 export default Day;

@@ -9,7 +9,6 @@ const AddScarity = (props) => {
   const [scarityState, setScarityState] = useState(props.init)
 
   const chooseScarityStateHandler = () => {
-    console.log(scarityState)
     if (scarityState === 'not scary') {
       setScarityState(SCARITY_LIST[1]);
       props.onAddScarity(SCARITY_LIST[1]);
