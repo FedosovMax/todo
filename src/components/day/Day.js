@@ -3,29 +3,11 @@ import classes from './Day.module.css'
 import TodoList from './todo/TodoList'
 import AddTodo from './addtodo/AddTodo'
 
-const DUMMY_TODO = [
-  {
-    id: '1',
-    text: 'Do something',
-    hardness: 'easy',
-    scarity: 'scary',
-    ready: false,
-  },
-  {
-    id: '2',
-    text: 'Buy something',
-    hardness: 'hard',
-    scarity: 'scary',
-    isReady: false,
-  },
-]
-
 const Day = () => {
   const [todoList, setTodoList] = useState([])
   const [error, setError] = useState(null)
 
-  // async function fetchMoviesHandler() {
-  const fetchMoviesHandler = useCallback(async () => {
+  const fetchTodosHandler = useCallback(async () => {
     // setIsLoading(true);
     setError(null)
     try {
@@ -38,48 +20,79 @@ const Day = () => {
 
       const data = await response.json()
 
-      setTodoList(data);
+      const loadedTodos = []
 
-      // const loadedTodos = [];
+      for (const key in data) {
+        loadedTodos.push({
+          id: key,
+          text: data[key].text,
+          hardness: data[key].hardness,
+          scarity: data[key].scarity,
+          ready: false,
+        })
+      }
 
-      // for (const key in data) {
-      //   loadedMovies.push({
-      //     id: key,
-      //     title: data[key].title,
-      //     openingText: data[key].openingText,
-      //     releaseDate: data[key].releaseDate,
-      //   });
-      // }
+      setTodoList(loadedTodos)
     } catch (error) {
       setError(error.message)
     }
     // setIsLoading(false);
   }, [])
 
-  // useEffect(() => {
-  //   fetchMoviesHandler()
-  // }, [])
-
-  const onAddTodoHandler = (props) => {
-    // console.log('onAddTodoHandler')
-    setTodoList((prevTodoList) => {
-      return [
-        ...prevTodoList,
-        {
-          text: props.text,
-          hardness: props.hardness,
-          scarity: props.scarity,
-          isReady: false,
-          id: Math.random().toString(),
+  async function onAddTodoHandler(todo) {
+    const response = await fetch(
+      'https://todo-6d56a-default-rtdb.europe-west1.firebasedatabase.app/todos.json',
+      {
+        method: 'POST',
+        body: JSON.stringify(todo),
+        headers: {
+          'Content-Type': 'application/json',
         },
-      ]
-    })
+      },
+    )
+    const data = await response.json()
   }
+
+  async function onUpdateTodoHandler(todo) {
+    const response = await fetch(
+      'https://todo-6d56a-default-rtdb.europe-west1.firebasedatabase.app/todos/' +
+        todo.key +
+        '.json',
+      {
+        method: 'PUT',
+        body: JSON.stringify(todo),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+    const data = await response.json()
+  }
+
+  // const onAddTodoHandler = (props) => {
+
+  //   setTodoList((prevTodoList) => {
+  //     return [
+  //       ...prevTodoList,
+  //       {
+  //         text: props.text,
+  //         hardness: props.hardness,
+  //         scarity: props.scarity,
+  //         isReady: false,
+  //         id: Math.random().toString(),
+  //       },
+  //     ]
+  //   })
+  // }
+
+  useEffect(() => {
+    fetchTodosHandler()
+  }, [onAddTodoHandler])
 
   return (
     <div className={classes.day}>
       <AddTodo onAddTodo={onAddTodoHandler} />
-      <TodoList todos={todoList} />
+      <TodoList todos={todoList} onUpdateTodo={onUpdateTodoHandler} />
     </div>
   )
 }

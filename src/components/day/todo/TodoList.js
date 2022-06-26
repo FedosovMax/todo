@@ -14,6 +14,7 @@ const TodoList = (props) => {
             hardness={todo.hardness}
             scarity={todo.scarity}
             isReady={todo.isReady}
+            onUpdateTodo={onUpdateTodo}
           />
         ))}
       </ul>

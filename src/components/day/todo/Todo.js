@@ -1,15 +1,20 @@
-import { Fragment, useState} from 'react';
+import { Fragment, useState } from 'react'
 
-import classes from "./Todo.module.css";
-import Hardness from "./Hardness";
-import Scarity from "./Scarity";
+import classes from './Todo.module.css'
+import Hardness from './Hardness'
+import Scarity from './Scarity'
 
 const Todo = (props) => {
-  const [isReady, setIsReady] = useState(props.isReady);
+  const [isReady, setIsReady] = useState(props.isReady)
+
+  // const prepareTodo = () => {
+  //   props.setIsReady(true)
+  //   props.onUpdateHander()
+  // }
 
   const makeReadyHandler = () => {
-    setIsReady(true);
-  };
+    props.onUpdateHander(id={props.id}, hardness={props.hardness}, scariness={props.scariness}, text={props.text}, isReady=true)
+  }
 
   return (
     <Fragment>
@@ -17,8 +22,8 @@ const Todo = (props) => {
         <div className={classes.todoName}>
           <p>{props.text}</p>
         </div>
-        <Hardness hardness={props.hardness}/>
-        <Scarity scarity={props.scarity}/>
+        <Hardness hardness={props.hardness} />
+        <Scarity scarity={props.scarity} />
         <div className={classes.ready}>
           <button onClick={makeReadyHandler} className="btn">
             DONE
@@ -26,7 +31,7 @@ const Todo = (props) => {
         </div>
       </div>
     </Fragment>
-  );
-};
+  )
+}
 
-export default Todo;
+export default Todo
