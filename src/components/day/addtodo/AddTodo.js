@@ -7,8 +7,6 @@ import AddScarity from "./AddScarity";
 const AddTodo = (props) => {
 //   const [isEntering, setIsEntering] = useState(false);
   const textInputRef = useRef();
-  //   const hardnessInputRef = useRef();
-  //   const scarityInputRef = useRef();
 
   function submitFormHandler(event) {
     event.preventDefault();
@@ -34,12 +32,10 @@ const AddTodo = (props) => {
 //   };
 
   const addHardnessHandler = (hardnessData) => {
-    // console.log(hardnessData);
     enteredHardness = hardnessData;
   };
 
   const addScarityHandler = (scarityData) => {
-    // console.log("handle Scarity");
     enteredScarity = scarityData;
   };
 

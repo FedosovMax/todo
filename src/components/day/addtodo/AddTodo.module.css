@@ -3,7 +3,7 @@
   margin: 1rem;
   margin-left: 3.5rem;
   float: left;
-  background-color:darkorange;
+  /* background-color:darkorange; */
   display: flex;
   list-style: none;
 }
@@ -31,7 +31,7 @@
 .control input,
 .control textarea {
   margin-left: 1rem;
-  width: 98%;
+  width: 100%;
   margin: 0.5rem;
   border: 1px solid teal;
   background-color: yellow;
