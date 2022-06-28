@@ -54,6 +54,7 @@ const Day = () => {
   }
 
   async function onUpdateTodoHandler(todo) {
+    console.log("onUpdateHandler");
     const response = await fetch(
       'https://todo-6d56a-default-rtdb.europe-west1.firebasedatabase.app/todos/' +
         todo.key +
@@ -67,6 +68,23 @@ const Day = () => {
       },
     )
     const data = await response.json()
+  }
+
+  async function onDeleteTodoHandler(key) {
+    console.log('delete');
+    const response = await fetch(
+      'https://todo-6d56a-default-rtdb.europe-west1.firebasedatabase.app/todos/' +
+        key +
+        '.json',
+      {
+        method: 'DELETE',
+        // body: JSON.stringify(todo),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+    // const data = await response.json()
   }
 
   // const onAddTodoHandler = (props) => {
@@ -92,7 +110,7 @@ const Day = () => {
   return (
     <div className={classes.day}>
       <AddTodo onAddTodo={onAddTodoHandler} />
-      <TodoList todos={todoList} onUpdateTodo={onUpdateTodoHandler} />
+      <TodoList todos={todoList} onUpdateTodo={onUpdateTodoHandler} onDeleteTodo={onDeleteTodoHandler}/>
     </div>
   )
 }

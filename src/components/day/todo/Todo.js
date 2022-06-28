@@ -7,18 +7,22 @@ import Scarity from './Scarity'
 const Todo = (props) => {
   const [isReady, setIsReady] = useState(props.isReady)
 
-  // const prepareTodo = () => {
-  //   props.setIsReady(true)
-  //   props.onUpdateHander()
-  // }
+  const deleteHandler = () => {
+    props.onDeleteTodo(props.id);
+  }
 
   const makeReadyHandler = () => {
-    props.onUpdateHander(id={props.id}, hardness={props.hardness}, scariness={props.scariness}, text={props.text}, isReady=true)
+    props.onUpdateTodo({id: props.id, hardness: props.hardness, scariness: props.scariness, text: props.text, isReady: true});
   }
 
   return (
     <Fragment>
       <div className={classes.todo}>
+        <div className={classes.delete}>
+          <button onClick={deleteHandler} className="btn">
+            X
+          </button>
+        </div>
         <div className={classes.todoName}>
           <p>{props.text}</p>
         </div>

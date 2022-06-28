@@ -4,6 +4,9 @@ import classes from "./Todo.module.css";
 import Todo from "./Todo";
 
 const TodoList = (props) => {
+
+  // const onUpdateTodoHandler.
+
   return (
     <Fragment>
       <ul className={classes.list}>
@@ -14,7 +17,8 @@ const TodoList = (props) => {
             hardness={todo.hardness}
             scarity={todo.scarity}
             isReady={todo.isReady}
-            onUpdateTodo={onUpdateTodo}
+            onUpdateTodo={props.onUpdateTodo}
+            onDeleteTodo={props.onDeleteTodo}
           />
         ))}
       </ul>

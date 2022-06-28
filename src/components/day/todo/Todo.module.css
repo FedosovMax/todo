@@ -17,6 +17,17 @@
   font-size: 1.25rem;
 }
 
+.delete {
+  text-align: right;
+  margin: 0.5rem;
+  /* background-color:aquamarine; */
+}
+
+.delete button {
+  margin: 0.2rem;
+  font-size: 1.25rem;
+}
+
 .todoName {
   width: 65%;
   margin: 0.5rem;
