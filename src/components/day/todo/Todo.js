@@ -12,7 +12,8 @@ const Todo = (props) => {
   }
 
   const makeReadyHandler = () => {
-    props.onUpdateTodo({id: props.id, hardness: props.hardness, scariness: props.scariness, text: props.text, isReady: true});
+    setIsReady(true);
+    props.onUpdateTodo({id: props.id, hardness: props.hardness, scarity: props.scarity, text: props.text, isReady: true});
   }
 
   return (

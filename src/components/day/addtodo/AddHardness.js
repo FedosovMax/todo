@@ -12,21 +12,25 @@ const AddHardness = (props) => {
     if (heavityState === 'easy') {
       setHeavityState(HARDNESS_LIST[1])
       props.onAddHardness(HARDNESS_LIST[1]);
+      console.log(heavityState)
       return heavityState;
     }
     if (heavityState === 'medium') {
       setHeavityState(HARDNESS_LIST[2])
       props.onAddHardness(HARDNESS_LIST[2]);
+      console.log(heavityState)
       return heavityState
     }
     if (heavityState === 'hard') {
       setHeavityState(HARDNESS_LIST[3])
       props.onAddHardness(HARDNESS_LIST[3]);
+      console.log(heavityState)
       return heavityState
     }
     if (heavityState === 'impossible') {
       setHeavityState(HARDNESS_LIST[0])
       props.onAddHardness(HARDNESS_LIST[0]);
+      console.log(heavityState)
       return heavityState
     }
   }

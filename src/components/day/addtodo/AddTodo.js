@@ -6,14 +6,13 @@ import AddScarity from "./AddScarity";
 
 const AddTodo = (props) => {
 //   const [isEntering, setIsEntering] = useState(false);
+const [enteredHardness, setEnteredHardness] = useState('easy');
+const [enteredScarity, setEnteredScarity] = useState('not scary');
   const textInputRef = useRef();
 
   function submitFormHandler(event) {
     event.preventDefault();
   }
-
-  var enteredHardness = 'easy';
-  var enteredScarity = 'not scary';
 
   const addTodoHandler = () => {
     // setIsEntering(false);
@@ -32,11 +31,11 @@ const AddTodo = (props) => {
 //   };
 
   const addHardnessHandler = (hardnessData) => {
-    enteredHardness = hardnessData;
+    setEnteredHardness(hardnessData);
   };
 
   const addScarityHandler = (scarityData) => {
-    enteredScarity = scarityData;
+    setEnteredScarity(scarityData);
   };
 
   return (
