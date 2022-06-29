@@ -1,8 +1,9 @@
 .logo {
-    text-align: center;
-    margin: 1.5rem;
-    color: #4a5555;
-    font-size: 1.25rem;
-    /* padding-bottom: 0.5rem; */
-    float: left;
-  }
+  width: 5%;
+  text-align: center;
+  margin: 0.5rem;
+  color: #4a5555;
+  font-size: 1.25rem;
+  /* padding-bottom: 0.5rem; */
+  float: left;
+}
