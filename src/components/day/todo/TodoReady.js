@@ -1,10 +1,10 @@
 import { Fragment, useState } from 'react'
 
-import classes from './Todo.module.css'
+import classes from './TodoReady.module.css'
 import Hardness from './Hardness'
 import Scarity from './Scarity'
 
-const Todo = (props) => {
+const TodoReady = (props) => {
   const [isReady, setIsReady] = useState(props.isReady)
 
   const deleteHandler = () => {
@@ -13,11 +13,11 @@ const Todo = (props) => {
 
   const makeReadyHandler = () => {
     if (isReady === true) {
-      setIsReady(true);
-    } else {
       setIsReady(false);
+    } else {
+      setIsReady(true);
     }
-    props.onUpdateTodo({id: props.id, hardness: props.hardness, scariness: props.scariness, dayTodoName: props.dayTodoName, isReady: true});
+    props.onUpdateTodo({id: props.id, hardness: props.hardness, scariness: props.scariness, dayTodoName: props.dayTodoName, isReady: isReady});
   }
 
   return (
@@ -35,7 +35,7 @@ const Todo = (props) => {
         <Scarity scariness={props.scariness} />
         <div className={classes.ready}>
           <button onClick={makeReadyHandler} className="btn">
-            DONE
+            UNDO
           </button>
         </div>
       </div>
@@ -43,4 +43,4 @@ const Todo = (props) => {
   )
 }
 
-export default Todo
+export default TodoReady

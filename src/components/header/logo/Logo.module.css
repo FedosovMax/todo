@@ -1,9 +1,16 @@
 .logo {
-  width: 5%;
-  text-align: center;
+  width: 3.5%;
   margin: 0.5rem;
-  color: #4a5555;
+  text-align: center;
+  margin-left: 5%;
   font-size: 1.25rem;
   /* padding-bottom: 0.5rem; */
   float: left;
+  /* border-bottom: #4a5555; */
+  /* background-color: aqua; */
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
 }

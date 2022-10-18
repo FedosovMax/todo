@@ -3,28 +3,28 @@ import { useState } from 'react'
 
 import classes from './AddScarity.module.css'
 
-let SCARITY_LIST = ['not scary', 'little scary', 'scary', 'terrifying']
+let SCARITY_LIST = ['NOT_SCARY', 'LITTLE_SCARY', 'SCARY', 'TERRIFYING']
 
 const AddScarity = (props) => {
   const [scarityState, setScarityState] = useState(props.init)
 
   const chooseScarityStateHandler = () => {
-    if (scarityState === 'not scary') {
+    if (scarityState === 'NOT_SCARY') {
       setScarityState(SCARITY_LIST[1]);
       props.onAddScarity(SCARITY_LIST[1]);
       return scarityState
     }
-    if (scarityState === 'little scary') {
+    if (scarityState === 'LITTLE_SCARY') {
       setScarityState(SCARITY_LIST[2]);
       props.onAddScarity(SCARITY_LIST[2]);
       return scarityState
     }
-    if (scarityState === 'scary') {
+    if (scarityState === 'SCARY') {
       setScarityState(SCARITY_LIST[3]);
       props.onAddScarity(SCARITY_LIST[3]);
       return scarityState
     }
-    if (scarityState === 'terrifying') {
+    if (scarityState === 'TERRIFYING') {
       setScarityState(SCARITY_LIST[0]);
       props.onAddScarity(SCARITY_LIST[4]);
       return scarityState

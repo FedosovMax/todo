@@ -1,0 +1,10 @@
+.list {
+  list-style: none;
+  width: 95%;
+  margin-left: 2%;
+  padding: 0%;
+  /* margin: 1rem; */
+  background-color: lightgray;
+  float: left;
+  /* display: flex; */
+}

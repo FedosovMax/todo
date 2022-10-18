@@ -6,8 +6,8 @@ import AddScarity from "./AddScarity";
 
 const AddTodo = (props) => {
 //   const [isEntering, setIsEntering] = useState(false);
-const [enteredHardness, setEnteredHardness] = useState('easy');
-const [enteredScarity, setEnteredScarity] = useState('not scary');
+const [enteredHardness, setEnteredHardness] = useState('NOT_HARD');
+const [enteredScarity, setEnteredScarity] = useState('NOT_SCARY');
   const textInputRef = useRef();
 
   function submitFormHandler(event) {
@@ -19,9 +19,9 @@ const [enteredScarity, setEnteredScarity] = useState('not scary');
     const enteredText = textInputRef.current.value;
 
     props.onAddTodo({
-      text: enteredText,
+      dayTodoName: enteredText,
       hardness: enteredHardness,
-      scarity: enteredScarity,
+      scariness: enteredScarity,
       isReady: false,
     });
   };
@@ -47,7 +47,7 @@ const [enteredScarity, setEnteredScarity] = useState('not scary');
           onSubmit={submitFormHandler}
         >
           <div className={classes.control}>
-            <textarea id="text" rows={1} ref={textInputRef}></textarea>
+            <textarea id="dayTodoName" rows={1} ref={textInputRef}></textarea>
           </div>
         </form>
         <AddHardness

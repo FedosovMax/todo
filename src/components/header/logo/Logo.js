@@ -5,7 +5,7 @@ import logoImage from "../../../assets/shield.png";
 const Logo = () => {
   // return <p className={classes.logo}>LOGO</p>;
   return (
-    <div className={classes[classes.logo]}>
+    <div className={classes.logo}>
       <img src={logoImage} alt="Logo" />
     </div>
   );

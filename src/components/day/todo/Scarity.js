@@ -5,7 +5,7 @@ import classes from './Scarity.module.css'
 let SCARITY_LIST = ['not scary', 'little scary', 'scary', 'terrifying']
 
 const Scarity = (props) => {
-  const [scarityState, setScarityState] = useState(props.scarity)
+  const [scarityState, setScarityState] = useState(props.scariness)
 
   const chooseScarityStateHandler = () => {
     console.log(scarityState)

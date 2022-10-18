@@ -1,17 +1,14 @@
 import { Fragment } from "react";
 
-import classes from "./TodoList.module.css";
-import Todo from "./Todo";
+import classes from "./TodoReadyList.module.css";
+import TodoReady from "./TodoReady";
 
 const TodoList = (props) => {
-
-  // const onUpdateTodoHandler.
-
   return (
     <Fragment>
       <ul className={classes.list}>
         {props.todos.map((todo) => (
-          <Todo
+          <TodoReady
             id={todo.id}
             dayTodoName={todo.dayTodoName}
             hardness={todo.hardness}
