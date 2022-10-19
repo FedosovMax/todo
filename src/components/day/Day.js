@@ -9,13 +9,39 @@ const Day = () => {
   const [todoReadyList, setTodoReadyList] = useState([])
   const [error, setError] = useState(null)
 
+  const day = null;
+
+  const fetchDaysHandler = useCallback(async () => {
+    setError(null)
+
+    if (day == null) {
+      try {
+        const response = await fetch(
+          'http://localhost:8080/api/v1/days',
+        )
+        if (response.status != 302) {
+          throw new Error('Something went wrong!')
+        }
+  
+        const data = await response.json()
+  
+        day = data[0]
+
+      } catch (error) {
+        setError(error.message)
+      }
+    }
+  }, [])
+
   const fetchTodosHandler = useCallback(async () => {
     // setIsLoading(true);
     setError(null)
+
     try {
       const response = await fetch(
         // 'https://todo-6d56a-default-rtdb.europe-west1.firebasedatabase.app/todos.json',
-        'http://localhost:8080/api/v1/days/41276374-cf9b-479c-ad59-c70159d67969/todos',
+        'http://localhost:8080/api/v1/days/' + day.id +
+        '/todos',
       )
       if (response.status != 302) {
         throw new Error('Something went wrong!')
@@ -58,7 +84,8 @@ const Day = () => {
 
   async function onAddTodoHandler(todo) {
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/41276374-cf9b-479c-ad59-c70159d67969/todos',
+      'http://localhost:8080/api/v1/days/' + day.id +
+      '/todos',
       {
         method: 'POST',
         body: JSON.stringify(todo),
@@ -72,10 +99,10 @@ const Day = () => {
 
   async function onUpdateTodoHandler(todo) {
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/41276374-cf9b-479c-ad59-c70159d67969/todos/' +
-        todo.id +
-        '/ready?ready=' +
-        todo.isReady,
+      'http://localhost:8080/api/v1/days/' + day.id +
+      '/todos/' + todo.id +
+      '/ready?ready=' +
+      todo.isReady,
       {
         method: 'PUT',
         headers: {
@@ -88,10 +115,10 @@ const Day = () => {
 
   async function onUpdateReadyTodoHandler(todo) {
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/41276374-cf9b-479c-ad59-c70159d67969/todos/' +
-        todo.id +
-        '/ready?ready=' +
-        todo.isReady,
+      'http://localhost:8080/api/v1/days/' + day.id +
+      '/todos/' + todo.id +
+      '/ready?ready=' +
+      todo.isReady,
       {
         method: 'PUT',
         headers: {
@@ -105,8 +132,9 @@ const Day = () => {
   async function onDeleteTodoHandler(key) {
     console.log('delete');
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/41276374-cf9b-479c-ad59-c70159d67969/todos/' +
-        key,
+      'http://localhost:8080/api/v1/days/' + day.id +
+      '/todos/' +
+      key,
       {
         method: 'DELETE',
         headers: {
@@ -117,21 +145,9 @@ const Day = () => {
     // const data = await response.json()
   }
 
-  // const onAddTodoHandler = (props) => {
-
-  //   setTodoList((prevTodoList) => {
-  //     return [
-  //       ...prevTodoList,
-  //       {
-  //         text: props.text,
-  //         hardness: props.hardness,
-  //         scarity: props.scarity,
-  //         isReady: false,
-  //         id: Math.random().toString(),
-  //       },
-  //     ]
-  //   })
-  // }
+  // useEffect(() => {
+  //   fetchDaysHandler()
+  // }, [onAddTodoHandler])
 
   useEffect(() => {
     fetchTodosHandler()
