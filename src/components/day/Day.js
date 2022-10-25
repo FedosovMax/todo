@@ -8,14 +8,15 @@ const Day = () => {
   const [todoList, setTodoList] = useState([])
   const [todoReadyList, setTodoReadyList] = useState([])
   const [error, setError] = useState(null)
+  const [dayId, setDayId] = useState(null)
 
-  const day = null;
+  useEffect(() => {
+      fetchDaysHandler()
+   }, []);
 
   const fetchDaysHandler = useCallback(async () => {
     setError(null)
-
-    if (day == null) {
-      try {
+    try {
         const response = await fetch(
           'http://localhost:8080/api/v1/days',
         )
@@ -24,24 +25,17 @@ const Day = () => {
         }
   
         const data = await response.json()
-  
-        day = data[0]
-
-      } catch (error) {
-        setError(error.message)
-      }
+        setDayId(data[0].id)
+    } catch (error) {
+      setError(error.message)
     }
   }, [])
 
   const fetchTodosHandler = useCallback(async () => {
-    // setIsLoading(true);
     setError(null)
-
     try {
       const response = await fetch(
-        // 'https://todo-6d56a-default-rtdb.europe-west1.firebasedatabase.app/todos.json',
-        'http://localhost:8080/api/v1/days/' + day.id +
-        '/todos',
+        'http://localhost:8080/api/v1/days/' + dayId + '/todos',
       )
       if (response.status != 302) {
         throw new Error('Something went wrong!')
@@ -54,7 +48,7 @@ const Day = () => {
       const loadedReadyTodos = []
 
       for (const key in data) {
-        if (data[key].ready == false) {
+        if (data[key].ready === false) {
           loadedTodos.push({
             id: data[key].id,
             dayTodoName: data[key].dayTodoName,
@@ -79,13 +73,11 @@ const Day = () => {
     } catch (error) {
       setError(error.message)
     }
-    // setIsLoading(false);
-  }, [])
+  }, [dayId])
 
   async function onAddTodoHandler(todo) {
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/' + day.id +
-      '/todos',
+      'http://localhost:8080/api/v1/days/' + dayId + '/todos',
       {
         method: 'POST',
         body: JSON.stringify(todo),
@@ -99,7 +91,7 @@ const Day = () => {
 
   async function onUpdateTodoHandler(todo) {
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/' + day.id +
+      'http://localhost:8080/api/v1/days/' + dayId +
       '/todos/' + todo.id +
       '/ready?ready=' +
       todo.isReady,
@@ -115,7 +107,7 @@ const Day = () => {
 
   async function onUpdateReadyTodoHandler(todo) {
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/' + day.id +
+      'http://localhost:8080/api/v1/days/' + dayId +
       '/todos/' + todo.id +
       '/ready?ready=' +
       todo.isReady,
@@ -132,7 +124,7 @@ const Day = () => {
   async function onDeleteTodoHandler(key) {
     console.log('delete');
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/' + day.id +
+      'http://localhost:8080/api/v1/days/' + dayId +
       '/todos/' +
       key,
       {
@@ -144,10 +136,6 @@ const Day = () => {
     )
     // const data = await response.json()
   }
-
-  // useEffect(() => {
-  //   fetchDaysHandler()
-  // }, [onAddTodoHandler])
 
   useEffect(() => {
     fetchTodosHandler()
