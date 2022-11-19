@@ -1,7 +1,7 @@
 .todo {
   float: left;
   width: 95%;
-  margin: 1rem;
+  /* margin: 1rem; */
   /* background-color:brown; */
   display: flex;
 }
@@ -33,7 +33,7 @@
   margin: 0.5rem;
   border: 1px solid teal;
   border-radius: 4px;
-  /* background-color:yellow; */
+  background-color:yellow;
   margin-right: 1rem;
 }
 
@@ -43,6 +43,28 @@
   margin: 0.2rem;
   padding: 0.2rem;
   /* background-color:chocolate; */
+}
+
+@media all and (max-width: 700px) {
+  .todoName p{
+    font-size: 0.5rem;
+  }
+  .delete {
+    margin: 0.1rem;
+  }
+  .delete button {
+    /* margin: 0.1rem; */
+    font-size: 0.5rem;
+  }
+  .todoName {
+    /* width: 20rem; */
+    min-width: 100px;
+    /* margin: 0.5rem; */
+    border: 1px solid teal;
+    border-radius: 4px;
+    background-color:yellow;
+    /* margin-right: 1rem; */
+  }
 }
 
 .ready button {

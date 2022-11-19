@@ -1,36 +1,58 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import classes from './Scarity.module.css'
+import NOT_SCARY from "../../../assets/NOT_SCARY.png";
+import LITTLE_SCARY from "../../../assets/LITTLE_SCARY.png";
+import SCARY from "../../../assets/SCARY.png";
+import TERRIFYING from "../../../assets/TERRIFYING.png";
 
-let SCARITY_LIST = ['not scary', 'little scary', 'scary', 'terrifying']
+let SCARITY_LIST = [NOT_SCARY, LITTLE_SCARY, SCARY, TERRIFYING]
 
 const Scarity = (props) => {
   const [scarityState, setScarityState] = useState(props.scariness)
 
+  useEffect(() => {
+    chooseInitScarityStateHandler()
+  }, []);
+
+  const chooseInitScarityStateHandler = () => {
+    if (props.scariness === 'NOT_SCARY') {
+      setScarityState(NOT_SCARY)
+    }
+    if (props.scariness === 'LITTLE_SCARY') {
+      setScarityState(LITTLE_SCARY)
+    }
+    if (props.scariness === 'SCARY') {
+      setScarityState(SCARY)
+    }
+    if (props.scariness === 'TERRIFYING') {
+      setScarityState(TERRIFYING)
+    }
+  }
+
   const chooseScarityStateHandler = () => {
-    console.log(scarityState)
-    if (scarityState === 'not scary') {
+    if (scarityState === NOT_SCARY) {
       setScarityState(SCARITY_LIST[1])
-      return scarityState
+      return NOT_SCARY
     }
-    if (scarityState === 'little scary') {
+    if (scarityState === LITTLE_SCARY) {
       setScarityState(SCARITY_LIST[2])
-      return scarityState
+      return LITTLE_SCARY
     }
-    if (scarityState === 'scary') {
+    if (scarityState === SCARY) {
       setScarityState(SCARITY_LIST[3])
-      return scarityState
+      return SCARY
     }
-    if (scarityState === 'terrifying') {
+    if (scarityState === TERRIFYING) {
       setScarityState(SCARITY_LIST[0])
-      return scarityState
+      return TERRIFYING
     }
   }
 
   return (
     <div className={classes.scarity}>
       <button onClick={chooseScarityStateHandler} className="btn">
-        {scarityState}
+      <img src={scarityState} alt="Scarity" />
       </button>
     </div>
   )

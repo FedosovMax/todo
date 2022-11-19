@@ -18,9 +18,10 @@ const Day = () => {
     setError(null)
     try {
         const response = await fetch(
-          'http://localhost:8080/api/v1/days',
+          // 'http://localhost:8080/api/v1/days',
+          'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days',
         )
-        if (response.status != 302) {
+        if (response.status !== 302) {
           throw new Error('Something went wrong!')
         }
   
@@ -35,14 +36,15 @@ const Day = () => {
     setError(null)
     try {
       const response = await fetch(
-        'http://localhost:8080/api/v1/days/' + dayId + '/todos',
+        // 'http://localhost:8080/api/v1/days/' + dayId + '/todos',
+        'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos',
       )
-      if (response.status != 302) {
+      if (response.status !== 302) {
         throw new Error('Something went wrong!')
       }
 
       const data = await response.json()
-      console.log(data)
+      // console.log(data)
 
       const loadedTodos = []
       const loadedReadyTodos = []
@@ -54,7 +56,7 @@ const Day = () => {
             dayTodoName: data[key].dayTodoName,
             hardness: data[key].hardness,
             scariness: data[key].scariness,
-            ready: false,
+            ready: false
           })
         } else {
           loadedReadyTodos.push({
@@ -62,7 +64,7 @@ const Day = () => {
             dayTodoName: data[key].dayTodoName,
             hardness: data[key].hardness,
             scariness: data[key].scariness,
-            ready: false,
+            ready: true
           })
         }
         
@@ -77,7 +79,8 @@ const Day = () => {
 
   async function onAddTodoHandler(todo) {
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/' + dayId + '/todos',
+      // 'http://localhost:8080/api/v1/days/' + dayId + '/todos',
+      'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos',
       {
         method: 'POST',
         body: JSON.stringify(todo),
@@ -87,46 +90,54 @@ const Day = () => {
       },
     )
     const data = await response.json()
+    fetchTodosHandler()
   }
 
   async function onUpdateTodoHandler(todo) {
+
+    let todoRequest = {
+      hardness: todo.hardness, 
+      scariness: todo.scariness, 
+      dayTodoName: todo.dayTodoName, 
+      ready: todo.isReady
+    }
+
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/' + dayId +
-      '/todos/' + todo.id +
-      '/ready?ready=' +
-      todo.isReady,
+      // 'http://localhost:8080/api/v1/days/' + dayId + '/todos/' + todo.id,
+      'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos/' + todo.id,
       {
         method: 'PUT',
+        body: JSON.stringify(todoRequest),
         headers: {
           'Content-Type': 'application/json',
         },
       },
     )
     const data = await response.json()
+    fetchTodosHandler()
   }
 
   async function onUpdateReadyTodoHandler(todo) {
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/' + dayId +
-      '/todos/' + todo.id +
-      '/ready?ready=' +
-      todo.isReady,
+      // 'http://localhost:8080/api/v1/days/' + dayId + '/todos/' + todo.id,
+      'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos/' + todo.id,
       {
         method: 'PUT',
+        body: JSON.stringify(todo),
         headers: {
           'Content-Type': 'application/json',
         },
       },
     )
     const data = await response.json()
+    fetchTodosHandler()
   }
 
   async function onDeleteTodoHandler(key) {
     console.log('delete');
     const response = await fetch(
-      'http://localhost:8080/api/v1/days/' + dayId +
-      '/todos/' +
-      key,
+      // 'http://localhost:8080/api/v1/days/' + dayId + '/todos/' + key,
+      'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos/' + key,
       {
         method: 'DELETE',
         headers: {
@@ -134,12 +145,13 @@ const Day = () => {
         },
       },
     )
+    fetchTodosHandler()
     // const data = await response.json()
   }
 
   useEffect(() => {
     fetchTodosHandler()
-  }, [onAddTodoHandler])
+  }, [dayId])
 
   return (
     <div className={classes.day}>

@@ -1,17 +1,33 @@
 .scarity {
-  width: 15%;
-  margin: 0.5rem;
-  margin-right: 1rem;
+  width: 80px;
+  /* width: 5rem; */
+  /* margin: 0 0.2rem 0 0.2rem; */
+  margin-right: 0.5rem;
   text-align: center;
-  background-color:violet;
+  /* background-color:violet; */
 }
 
 .scarity button{
-  color: #554a53;
-  text-align: center;
-  font-size: 1rem;
-  margin: 0.2rem;
-  padding: 0.5rem;
+  width: 80px;
+  display: block;
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
   border: 0px solid teal;
   background-color: transparent;
 }
+
+.scarity button img {
+  width: 80%;
+  align-self: center;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0px solid teal;
+}
+
+/* @media all and (max-width: 700px) {
+  .scarity button{
+    font-size: 0.5rem;
+  }
+} */

@@ -6,10 +6,15 @@ import Scarity from './Scarity'
 
 const Todo = (props) => {
   const [isReady, setIsReady] = useState(props.isReady)
+  const [enteredSaveHardness, setEnteredSaveHardness] = useState(props.hardness);
 
   const deleteHandler = () => {
     props.onDeleteTodo(props.id);
   }
+
+  const changeHardnessHandler = (hardnessData) => {
+    setEnteredSaveHardness(hardnessData)
+  };
 
   const makeReadyHandler = () => {
     if (isReady === true) {
@@ -17,7 +22,13 @@ const Todo = (props) => {
     } else {
       setIsReady(false);
     }
-    props.onUpdateTodo({id: props.id, hardness: props.hardness, scariness: props.scariness, dayTodoName: props.dayTodoName, isReady: true});
+    props.onUpdateTodo({
+      id: props.id, 
+      hardness: enteredSaveHardness, 
+      scariness: props.scariness, 
+      dayTodoName: props.dayTodoName, 
+      isReady: true
+    });
   }
 
   return (
@@ -31,7 +42,7 @@ const Todo = (props) => {
         <div className={classes.todoName}>
           <p>{props.dayTodoName}</p>
         </div>
-        <Hardness hardness={props.hardness} />
+        <Hardness hardness={props.hardness} onChangeHardness={changeHardnessHandler} />
         <Scarity scariness={props.scariness} />
         <div className={classes.ready}>
           <button onClick={makeReadyHandler} className="btn">

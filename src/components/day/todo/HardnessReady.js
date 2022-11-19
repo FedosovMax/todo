@@ -10,7 +10,7 @@ import IMPOSSIBLE from "../../../assets/IMPOSSIBLE.png";
 let HARDNESS_LIST = [NOT_HARD, HARD, VERY_HARD, EXTRAORDINARY, IMPOSSIBLE]
 let HARDNESS_SAVE_LIST = ["NOT_HARD", "HARD", "VERY_HARD", "EXTRAORDINARY", "IMPOSSIBLE"]
 
-const Hardness = (props) => {
+const HardnessReady = (props) => {
   const [heavityState, setHeavityState] = useState(props.hardness)
 
   useEffect(() => {
@@ -35,37 +35,37 @@ const Hardness = (props) => {
     }
   }
 
-  const chooseHeavityStateHandler = () => {
-    if (heavityState === NOT_HARD) {
-      setHeavityState(HARDNESS_LIST[1])
-      props.onChangeHardness(HARDNESS_SAVE_LIST[1]);
-      return NOT_HARD
-    }
-    if (heavityState === HARD) {
-      setHeavityState(HARDNESS_LIST[2])
-      props.onChangeHardness(HARDNESS_SAVE_LIST[2]);
-      return HARD
-    }
-    if (heavityState === VERY_HARD) {
-      setHeavityState(HARDNESS_LIST[3])
-      props.onChangeHardness(HARDNESS_SAVE_LIST[3]);
-      return VERY_HARD
-    }
-    if (heavityState === EXTRAORDINARY) {
-      setHeavityState(HARDNESS_LIST[4])
-      props.onChangeHardness(HARDNESS_SAVE_LIST[4]);
-      return EXTRAORDINARY
-    }
-    if (heavityState === IMPOSSIBLE) {
-      setHeavityState(HARDNESS_LIST[0])
-      props.onChangeHardness(HARDNESS_SAVE_LIST[0]);
-      return IMPOSSIBLE
-    }
-  }
+  // const chooseHeavityStateHandler = () => {
+  //   if (heavityState === NOT_HARD) {
+  //     setHeavityState(HARDNESS_LIST[1])
+  //     props.onChangeHardness(HARDNESS_SAVE_LIST[1]);
+  //     return NOT_HARD
+  //   }
+  //   if (heavityState === HARD) {
+  //     setHeavityState(HARDNESS_LIST[2])
+  //     props.onChangeHardness(HARDNESS_SAVE_LIST[2]);
+  //     return HARD
+  //   }
+  //   if (heavityState === VERY_HARD) {
+  //     setHeavityState(HARDNESS_LIST[3])
+  //     props.onChangeHardness(HARDNESS_SAVE_LIST[3]);
+  //     return VERY_HARD
+  //   }
+  //   if (heavityState === EXTRAORDINARY) {
+  //     setHeavityState(HARDNESS_LIST[4])
+  //     props.onChangeHardness(HARDNESS_SAVE_LIST[4]);
+  //     return EXTRAORDINARY
+  //   }
+  //   if (heavityState === IMPOSSIBLE) {
+  //     setHeavityState(HARDNESS_LIST[0])
+  //     props.onChangeHardness(HARDNESS_SAVE_LIST[0]);
+  //     return IMPOSSIBLE
+  //   }
+  // }
 
   return (
     <div className={classes.heavity}>
-      <button onClick={chooseHeavityStateHandler} className="btn">
+      <button className="btn">
       <img src={heavityState} alt="Heavity" />
       </button>
     </div>
@@ -105,4 +105,4 @@ const Hardness = (props) => {
 // )
 // }
 
-export default Hardness;
+export default HardnessReady;

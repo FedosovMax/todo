@@ -3,11 +3,15 @@ import { Fragment, useRef, useState } from "react";
 import classes from "./AddTodo.module.css";
 import AddHardness from "./AddHardness";
 import AddScarity from "./AddScarity";
+import NOT_SCARY from "../../../assets/NOT_SCARY.png";
+import NOT_HARD from "../../../assets/NOT_HARD.png";
 
 const AddTodo = (props) => {
 //   const [isEntering, setIsEntering] = useState(false);
-const [enteredHardness, setEnteredHardness] = useState('NOT_HARD');
-const [enteredScarity, setEnteredScarity] = useState('NOT_SCARY');
+const [enteredHardness, setEnteredHardness] = useState(NOT_HARD);
+const [enteredScarity, setEnteredScarity] = useState(NOT_SCARY);
+const [enteredSaveHardness, setEnteredSaveHardness] = useState('NOT_HARD');
+const [enteredSaveScarity, setEnteredSaveScarity] = useState('NOT_SCARY');
   const textInputRef = useRef();
 
   function submitFormHandler(event) {
@@ -20,10 +24,15 @@ const [enteredScarity, setEnteredScarity] = useState('NOT_SCARY');
 
     props.onAddTodo({
       dayTodoName: enteredText,
-      hardness: enteredHardness,
-      scariness: enteredScarity,
+      hardness: enteredSaveHardness,
+      scariness: enteredSaveScarity,
       isReady: false,
     });
+
+    setEnteredHardness(NOT_HARD)
+    setEnteredScarity(NOT_SCARY)
+
+    textInputRef.current.value = ''
   };
 
 //   const formFocusedHandler = () => {
@@ -32,10 +41,12 @@ const [enteredScarity, setEnteredScarity] = useState('NOT_SCARY');
 
   const addHardnessHandler = (hardnessData) => {
     setEnteredHardness(hardnessData);
+    setEnteredSaveHardness(hardnessData)
   };
 
   const addScarityHandler = (scarityData) => {
     setEnteredScarity(scarityData);
+    setEnteredSaveScarity(scarityData)
   };
 
   return (

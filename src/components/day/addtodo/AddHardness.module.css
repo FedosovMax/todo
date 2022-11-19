@@ -1,18 +1,31 @@
 .heavity {
-  width: 15%;
-  margin: 0.5rem;
-  margin-right: 1rem;
+  width: 130px;
+  padding-right: 8.4rem;
   margin-left: 1.8rem;
-  text-align: center;
-  background-color:violet;
+  display: block;
+  /* background-color:violet; */
 }
 
-.heavity button{
-  color: #554a53;
-  text-align: center;
-  font-size: 1rem;
-  margin: 0.2rem;
-  padding: 0.5rem;
-  border: 0px solid teal;
+.heavity button {
+  width: 130px;
+  display: block;
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
   background-color: transparent;
+  border: 0px solid teal;
 }
+
+.heavity button img {
+  align-self: center;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0px solid teal;
+}
+
+/* @media all and (max-width: 700px) {
+  .heavity button{
+    font-size: 0.5rem;
+  }
+} */

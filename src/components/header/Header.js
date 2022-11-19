@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className={classes.header}>
       <Logo />
-      <UserInfo />
+      {/* <UserInfo /> */}
     </div>
   );
 };
