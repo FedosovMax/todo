@@ -8,12 +8,17 @@ const Todo = (props) => {
   const [isReady, setIsReady] = useState(props.isReady)
   const [enteredSaveHardness, setEnteredSaveHardness] = useState(props.hardness);
 
+  console.log('Todo' + enteredSaveHardness)
+  var changed = true;
+
   const deleteHandler = () => {
     props.onDeleteTodo(props.id);
   }
 
   const changeHardnessHandler = (hardnessData) => {
     setEnteredSaveHardness(hardnessData)
+    console.log('changeHardnessHandler')
+
   };
 
   const makeReadyHandler = () => {
@@ -29,6 +34,7 @@ const Todo = (props) => {
       dayTodoName: props.dayTodoName, 
       isReady: true
     });
+    props.onFetchDaysHandler();
   }
 
   return (
@@ -42,7 +48,7 @@ const Todo = (props) => {
         <div className={classes.todoName}>
           <p>{props.dayTodoName}</p>
         </div>
-        <Hardness hardness={props.hardness} onChangeHardness={changeHardnessHandler} />
+        <Hardness hardness={[props.hardness, changed]} onChangeHardness={changeHardnessHandler} />
         <Scarity scariness={props.scariness} />
         <div className={classes.ready}>
           <button onClick={makeReadyHandler} className="btn">

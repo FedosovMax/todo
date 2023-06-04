@@ -14,12 +14,15 @@ const Day = () => {
       fetchDaysHandler()
    }, []);
 
+  let host = 'http://localhost:8080';
+  // let host = 'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com';
+
   const fetchDaysHandler = useCallback(async () => {
     setError(null)
     try {
         const response = await fetch(
-          // 'http://localhost:8080/api/v1/days',
-          'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days',
+          'http://localhost:8080/api/v1/days',
+          // 'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days',
         )
         if (response.status !== 302) {
           throw new Error('Something went wrong!')
@@ -36,13 +39,14 @@ const Day = () => {
     setError(null)
     try {
       const response = await fetch(
-        // 'http://localhost:8080/api/v1/days/' + dayId + '/todos',
-        'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos',
+        host + '/api/v1/days/' + dayId + '/todos',
+        // 'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos',
       )
       if (response.status !== 302) {
         throw new Error('Something went wrong!')
       }
 
+      console.log('fetchTodosHandler')
       const data = await response.json()
       // console.log(data)
 
@@ -79,8 +83,8 @@ const Day = () => {
 
   async function onAddTodoHandler(todo) {
     const response = await fetch(
-      // 'http://localhost:8080/api/v1/days/' + dayId + '/todos',
-      'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos',
+      host + '/api/v1/days/' + dayId + '/todos',
+      // 'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos',
       {
         method: 'POST',
         body: JSON.stringify(todo),
@@ -101,10 +105,10 @@ const Day = () => {
       dayTodoName: todo.dayTodoName, 
       ready: todo.isReady
     }
-
+    console.log('updateReadyTodoHandler')
     const response = await fetch(
-      // 'http://localhost:8080/api/v1/days/' + dayId + '/todos/' + todo.id,
-      'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos/' + todo.id,
+      host + '/api/v1/days/' + dayId + '/todos/' + todo.id,
+      // 'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos/' + todo.id,
       {
         method: 'PUT',
         body: JSON.stringify(todoRequest),
@@ -120,7 +124,8 @@ const Day = () => {
   async function onUpdateReadyTodoHandler(todo) {
     const response = await fetch(
       // 'http://localhost:8080/api/v1/days/' + dayId + '/todos/' + todo.id,
-      'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos/' + todo.id,
+      // 'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos/' + todo.id,
+      host + '/api/v1/days/' + dayId + '/todos/' + todo.id,
       {
         method: 'PUT',
         body: JSON.stringify(todo),
@@ -136,8 +141,8 @@ const Day = () => {
   async function onDeleteTodoHandler(key) {
     console.log('delete');
     const response = await fetch(
-      // 'http://localhost:8080/api/v1/days/' + dayId + '/todos/' + key,
-      'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos/' + key,
+      host + '/api/v1/days/' + dayId + '/todos/' + key,
+      // 'http://todoknight-env.eba-q89a6pin.eu-central-1.elasticbeanstalk.com/api/v1/days/' + dayId + '/todos/' + key,
       {
         method: 'DELETE',
         headers: {
@@ -156,7 +161,7 @@ const Day = () => {
   return (
     <div className={classes.day}>
       <AddTodo onAddTodo={onAddTodoHandler} />
-      <TodoList todos={todoList} onUpdateTodo={onUpdateTodoHandler} onDeleteTodo={onDeleteTodoHandler}/>
+      <TodoList todos={todoList} onUpdateTodo={onUpdateTodoHandler} onDeleteTodo={onDeleteTodoHandler} onFetchDaysHandler={fetchDaysHandler}/>
       <TodoReadyList todos={todoReadyList} onUpdateTodo={onUpdateReadyTodoHandler} onDeleteTodo={onDeleteTodoHandler}/>
     </div>
   )

@@ -5,6 +5,7 @@ import Todo from "./Todo";
 
 const TodoList = (props) => {
 
+  console.log('TodoList')
 
   return (
     <Fragment>
@@ -18,6 +19,7 @@ const TodoList = (props) => {
             isReady={todo.isReady}
             onUpdateTodo={props.onUpdateTodo}
             onDeleteTodo={props.onDeleteTodo}
+            onFetchDaysHandler={props.onFetchDaysHandler}
           />
         ))}
       </ul>

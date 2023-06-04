@@ -12,54 +12,77 @@ let HARDNESS_SAVE_LIST = ["NOT_HARD", "HARD", "VERY_HARD", "EXTRAORDINARY", "IMP
 
 const Hardness = (props) => {
   const [heavityState, setHeavityState] = useState(props.hardness)
+  const [readyHeavityState, setReadyHeavityState] = useState()
+  const [textHeavityState, setTextHeavityState] = useState(props.hardness)
 
   useEffect(() => {
     chooseInitHeavityStateHandler()
-  }, []);
+    console.log(heavityState + 19)
+  }, [props.changed === true]);
+
+  // useEffect(() => {
+  //   //Runs on every render
+  //   chooseInitHeavityStateHandler()
+  //   console.log(heavityState + 25)
+  // });
 
   const chooseInitHeavityStateHandler = () => {
-    if (props.hardness === 'NOT_HARD') {
+    if (props.hardness === "NOT_HARD") {
       setHeavityState(NOT_HARD)
+      setTextHeavityState("NOT_HARD")
+      console.log(heavityState + 26)
     }
-    if (props.hardness === 'HARD') {
+    if (props.hardness === "HARD") {
       setHeavityState(HARD)
+      setTextHeavityState("HARD")
+      console.log(heavityState + 31)
     }
-    if (props.hardness === 'VERY_HARD') {
+    if (props.hardness === "VERY_HARD") {
       setHeavityState(VERY_HARD)
+      setTextHeavityState("VERY_HARD")
     }
-    if (props.hardness === 'EXTRAORDINARY') {
+    if (props.hardness === "EXTRAORDINARY") {
       setHeavityState(EXTRAORDINARY)
+      setTextHeavityState("EXTRAORDINARY")
     }
-    if (props.hardness === 'IMPOSSIBLE') {
+    if (props.hardness === "IMPOSSIBLE") {
       setHeavityState(IMPOSSIBLE)
+      setTextHeavityState("IMPOSSIBLE")
     }
   }
 
   const chooseHeavityStateHandler = () => {
-    if (heavityState === NOT_HARD) {
-      setHeavityState(HARDNESS_LIST[1])
-      props.onChangeHardness(HARDNESS_SAVE_LIST[1]);
-      return NOT_HARD
+    if (textHeavityState === "NOT_HARD") {
+      setHeavityState(HARD)
+      setTextHeavityState("HARD")
+      props.onChangeHardness("HARD");
+      console.log(heavityState + 52)
+      // return NOT_HARD
     }
     if (heavityState === HARD) {
-      setHeavityState(HARDNESS_LIST[2])
-      props.onChangeHardness(HARDNESS_SAVE_LIST[2]);
-      return HARD
+      setHeavityState(VERY_HARD)
+      setTextHeavityState("VERY_HARD")
+      props.onChangeHardness("VERY_HARD");
+      console.log(heavityState + 59)
+      // return HARD
     }
     if (heavityState === VERY_HARD) {
-      setHeavityState(HARDNESS_LIST[3])
-      props.onChangeHardness(HARDNESS_SAVE_LIST[3]);
-      return VERY_HARD
+      setHeavityState(EXTRAORDINARY)
+      setTextHeavityState("EXTRAORDINARY")
+      props.onChangeHardness("EXTRAORDINARY");
+      // return VERY_HARD
     }
     if (heavityState === EXTRAORDINARY) {
-      setHeavityState(HARDNESS_LIST[4])
-      props.onChangeHardness(HARDNESS_SAVE_LIST[4]);
-      return EXTRAORDINARY
+      setHeavityState(IMPOSSIBLE)
+      setTextHeavityState("IMPOSSIBLE")
+      props.onChangeHardness("IMPOSSIBLE");
+      // return EXTRAORDINARY
     }
     if (heavityState === IMPOSSIBLE) {
-      setHeavityState(HARDNESS_LIST[0])
-      props.onChangeHardness(HARDNESS_SAVE_LIST[0]);
-      return IMPOSSIBLE
+      setHeavityState(NOT_HARD)
+      setTextHeavityState("NOT_HARD")
+      props.onChangeHardness("NOT_HARD");
+      // return IMPOSSIBLE
     }
   }
 
